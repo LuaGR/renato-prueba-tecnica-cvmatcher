@@ -1,0 +1,39 @@
+// Variables de colores
+$primary-color: #007bff;
+$secondary-color: #f8f9fa;
+$text-color: #333;
+$border-color: #ddd;
+$background-color: #fff;
+
+// Reset básico
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: $secondary-color;
+}
+
+// Contenedor principal
+.job-container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+// Lista de trabajos
+app-job-list {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+// Cada tarjeta de empleo
+app-job-details {
+  display: block; // Asegura que cada uno sea un bloque separado
+  width: 100%;
+}

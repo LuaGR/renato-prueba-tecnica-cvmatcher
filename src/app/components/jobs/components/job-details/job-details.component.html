@@ -1,0 +1,30 @@
+
+@let job = selectedJob();
+@if (job) {
+  <section class="job-details">
+    <header>
+      <img [src]="job.company_image" [alt]="job.company">
+      <h1>{{ job.title }}</h1>
+      <p class="company">{{ job.company }}</p>
+      <p class="location">📍 {{ job.location }}</p>
+      <a [href]="job.url" target="_blank" class="apply">Ir a la oferta</a>
+    </header>
+
+    <article class="job-description">
+      <h3>Información del empleo</h3>
+      <p>{{ job.description }}</p>
+
+      <h3>Requisitos:</h3>
+      <ul>
+        @for (skill of job.technical_skills.split(','); track $index) {
+          <li>{{ skill }}</li>
+        }
+      </ul>
+    </article>
+  </section>
+}
+
+<ng-template #noJob>
+  <p>Selecciona un empleo para ver los detalles.</p>
+</ng-template>
+

@@ -1,0 +1,32 @@
+// Variables de colores
+$primary-color: #007bff;
+$secondary-color: #f8f9fa;
+$text-color: #333;
+$border-color: #ddd;
+$background-color: #fff;
+
+// Barra de búsqueda
+.search-bar {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px;
+  background: $background-color;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+  input {
+    padding: 10px;
+    border: 1px solid $border-color;
+    border-radius: 5px;
+    width: 200px;
+  }
+
+  button {
+    background: $primary-color;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+}
