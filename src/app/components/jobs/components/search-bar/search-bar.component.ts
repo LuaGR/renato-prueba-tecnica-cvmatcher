@@ -5,7 +5,8 @@ import { Router } from '@angular/router';
 
 interface SearchForm {
   title: FormControl<string>,
-  location: FormControl<string>
+  location: FormControl<string>,
+  years_experience: FormControl<number>,
 }
 
 @Component({
@@ -18,21 +19,23 @@ interface SearchForm {
 export class SearchBarComponent {
   private router = inject(Router)
 
-  searchForm = new FormGroup<SearchForm>({
+searchForm = new FormGroup<SearchForm>({
     title: new FormControl('', {
       nonNullable: true,
     }),
     location: new FormControl('', {
       nonNullable: true,
     }),
+    years_experience: new FormControl<number>(-1, {  // Nuevo campo
+      nonNullable: true, // Permitimos que sea opcional
+    }),
   });
 
   onSubmit(): void {
-    const { title, location } = this.searchForm.value;
-
+    const { title, location, years_experience } = this.searchForm.value;
     this.router.navigate([], {
-      queryParams: { title, location },
-      queryParamsHandling: 'merge'
+      queryParams: { title, location, years_experience }, // Añadimos el nuevo parámetro
+      queryParamsHandling: 'merge',
     });
   }
 }

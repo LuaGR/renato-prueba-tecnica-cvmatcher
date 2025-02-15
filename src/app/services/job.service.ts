@@ -14,21 +14,20 @@ export class JobService {
     jobs: new Map<number, Job>(),
   });
 
-  private previousSearchValues = { title: '', location: '' };
+  private previousSearchValues = { title: '', location: '', years_experience: -1 };
   filteredJobs = signal<Job[]>([]);
 
   private selectedJobId = signal<number | null>(null);
 
   constructor() {
     this.getJobs();
-
     this.route.queryParams.subscribe(params => {
       const title = params['title'] || '';
       const location = params['location'] || '';
-      this.filterJobs(title, location);
+      const years_experience = params['years_experience'] ? Number(params['years_experience']) : -1; // Nuevo campo
+      this.filterJobs(title, location, years_experience); // Pasamos el nuevo parámetro
     });
   }
-
   getJobs(): void {
     of(mockJobs).subscribe((result) => {
       result.forEach((job) => {
@@ -51,24 +50,29 @@ export class JobService {
     return this.state().jobs.get(id);
   }
 
-  filterJobs(title: string, location: string): void {
-
-    if (title === this.previousSearchValues.title && location === this.previousSearchValues.location) {
+  filterJobs(title: string, location: string, years_experience: number): void {
+    if (
+      title === this.previousSearchValues.title &&
+      location === this.previousSearchValues.location &&
+      years_experience === this.previousSearchValues.years_experience
+    ) {
       console.log('Los valores de búsqueda no han cambiado. No se realiza una nueva búsqueda.');
       return;
     }
 
-    this.previousSearchValues = { title, location };
+    this.previousSearchValues = { title, location, years_experience };
 
     const jobs = this.getFormattedJobs();
 
-    if (!title && !location) {
+    if (!title && !location && years_experience === -1) {
       this.filteredJobs.set(jobs);
     } else {
       const filtered = jobs.filter((job) => {
         const matchesTitle = title ? job.title.toLowerCase().includes(title.toLowerCase()) : true;
         const matchesLocation = location ? job.location.toLowerCase().includes(location.toLowerCase()) : true;
-        return matchesTitle && matchesLocation;
+        const matchesExperience =
+          years_experience !== -1 ? job.years_experience === years_experience : true; // Nuevo filtro
+        return matchesTitle && matchesLocation && matchesExperience;
       });
 
       this.filteredJobs.set(filtered);
@@ -76,7 +80,6 @@ export class JobService {
 
     this.selectFirstJob();
   }
-
   private selectFirstJob(): void {
     const jobs = this.filteredJobs();
     if (jobs.length > 0) {

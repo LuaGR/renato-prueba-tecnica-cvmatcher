@@ -13,7 +13,13 @@
       type="text"
       errorMessage="Por favor ingresa un lugar válido"
     />
-
+<!-- Nuevo select para years_experience usando @for -->
+  <select formControlName="years_experience">
+    <option [ngValue]="-1">Selecciona años de experiencia</option>
+    @for (year of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; track year) {
+      <option [value]="year">{{ year }} año(s)</option>
+    }
+  </select>
     <button type="submit" [disabled]="searchForm.invalid">Buscar</button>
 
   </form>
