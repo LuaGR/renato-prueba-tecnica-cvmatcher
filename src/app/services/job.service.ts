@@ -17,7 +17,6 @@ export class JobService {
   });
 
   private previousSearchValues = { title: '', location: '' };
-
   filteredJobs = signal<Job[]>([]);
 
   private selectedJobId = signal<number | null>(null);
@@ -39,6 +38,8 @@ export class JobService {
       this.state.set({ jobs: this.state().jobs });
 
       this.filteredJobs.set(this.getFormattedJobs());
+
+      this.selectFirstJob();
     });
   }
 
@@ -64,16 +65,24 @@ export class JobService {
 
     if (!title && !location) {
       this.filteredJobs.set(jobs);
-      return;
+    } else {
+      const filtered = jobs.filter((job) => {
+        const matchesTitle = title ? job.title.toLowerCase().includes(title.toLowerCase()) : true;
+        const matchesLocation = location ? job.location.toLowerCase().includes(location.toLowerCase()) : true;
+        return matchesTitle && matchesLocation;
+      });
+
+      this.filteredJobs.set(filtered);
     }
 
-    const filtered = jobs.filter((job) => {
-      const matchesTitle = title ? job.title.toLowerCase().includes(title.toLowerCase()) : true;
-      const matchesLocation = location ? job.location.toLowerCase().includes(location.toLowerCase()) : true;
-      return matchesTitle && matchesLocation;
-    });
+    this.selectFirstJob();
+  }
 
-    this.filteredJobs.set(filtered);
+  private selectFirstJob(): void {
+    const jobs = this.filteredJobs();
+    if (jobs.length > 0) {
+      this.setSelectedJobId(jobs[0].job_id);
+    }
   }
 
   setSelectedJobId(id: number): void {
