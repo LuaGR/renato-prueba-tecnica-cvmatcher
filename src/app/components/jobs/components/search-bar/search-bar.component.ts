@@ -1,9 +1,7 @@
-import { ChangeDetectionStrategy, Component, inject, model, signal } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CustomInputComponent } from '../custom-input/custom-input.component';
-import { firstValueFrom } from 'rxjs';
-import { JobService } from '@app/services/job.service';
-import { Job } from '@app/models/job.model';
+import { Router } from '@angular/router';
 
 interface SearchForm {
   title: FormControl<string>,
@@ -18,7 +16,7 @@ interface SearchForm {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchBarComponent {
-  private jobService = inject(JobService);
+  private router = inject(Router)
 
   searchForm = new FormGroup<SearchForm>({
     title: new FormControl('', {
@@ -32,8 +30,9 @@ export class SearchBarComponent {
   onSubmit(): void {
     const { title, location } = this.searchForm.value;
 
-    this.jobService.updateSearchValues(title || '', location || '');
-
-    this.jobService.filterJobs();
+    this.router.navigate([], {
+      queryParams: { title, location },
+      queryParamsHandling: 'merge'
+    });
   }
 }

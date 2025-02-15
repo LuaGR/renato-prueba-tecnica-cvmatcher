@@ -2,18 +2,16 @@ import { inject, Injectable, signal } from '@angular/core';
 import { Job } from '@app/models/job.model';
 import { of } from 'rxjs';
 import mockJobs from '@app/mocks/data-jobs.json';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class JobService {
-  state = signal({
+  private router = inject(Router)
+  private route = inject(ActivatedRoute)
+  private state = signal({
     jobs: new Map<number, Job>(),
-  });
-
-  searchValues = signal({
-    title: '',
-    location: '',
   });
 
   private previousSearchValues = { title: '', location: '' };
@@ -23,10 +21,12 @@ export class JobService {
 
   constructor() {
     this.getJobs();
-  }
 
-  getFormattedJobs(): Job[] {
-    return Array.from(this.state().jobs.values());
+    this.route.queryParams.subscribe(params => {
+      const title = params['title'] || '';
+      const location = params['location'] || '';
+      this.filterJobs(title, location);
+    });
   }
 
   getJobs(): void {
@@ -43,16 +43,15 @@ export class JobService {
     });
   }
 
+  getFormattedJobs(): Job[] {
+    return Array.from(this.state().jobs.values());
+  }
+
   getJobById(id: number): Job | undefined {
     return this.state().jobs.get(id);
   }
 
-  updateSearchValues(title: string, location: string): void {
-    this.searchValues.set({ title, location });
-  }
-
-  filterJobs(): void {
-    const { title, location } = this.searchValues();
+  filterJobs(title: string, location: string): void {
 
     if (title === this.previousSearchValues.title && location === this.previousSearchValues.location) {
       console.log('Los valores de búsqueda no han cambiado. No se realiza una nueva búsqueda.');
@@ -87,6 +86,11 @@ export class JobService {
 
   setSelectedJobId(id: number): void {
     this.selectedJobId.set(id);
+
+    this.router.navigate([], {
+      queryParams: { jobId: id },
+      queryParamsHandling: 'merge',
+    });
   }
 
   getSelectedJob(): Job | undefined {

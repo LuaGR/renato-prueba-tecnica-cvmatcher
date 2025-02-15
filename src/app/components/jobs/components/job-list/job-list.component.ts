@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, Signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Signal } from '@angular/core';
 import { Job } from '@app/models/job.model';
 import { JobService } from '@app/services/job.service';
 
