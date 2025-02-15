@@ -11,10 +11,11 @@ import { AbstractControl, ReactiveFormsModule } from '@angular/forms';
 export class CustomInputComponent {
 
   control = input.required<AbstractControl<string, string> | null>()
-  label = input.required<string>()
+  label = input<string>()
   type = input.required<string>()
   placeholder = input.required<string>()
   errorMessage = input.required<string>()
+  style = input<string>()
 
 }
 

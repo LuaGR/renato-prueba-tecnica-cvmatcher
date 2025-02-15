@@ -1,6 +1,19 @@
-<header class="search-bar">
-    <input type="text" placeholder="Buscar empleo...">
-    <input type="text" placeholder="Lugar">
-    <button>Buscar</button>
-</header>
+<header>
+  <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="search-bar">
 
+    <app-custom-input
+      [control]="searchForm.get('title')"
+      placeholder="Buscar empleo..."
+      type="text"
+      errorMessage="Por favor ingresa un empleo válido"
+    />
+    <app-custom-input
+      [control]="searchForm.get('location')"
+      placeholder="Lugar"
+      type="text"
+      errorMessage="Por favor ingresa un lugar válido"
+    />
+    <button type="submit" [disabled]="searchForm.invalid">Buscar</button>
+
+  </form>
+</header>

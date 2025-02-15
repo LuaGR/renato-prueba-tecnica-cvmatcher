@@ -12,7 +12,7 @@ import { JobService } from '@app/services/job.service';
 export class JobListComponent {
 
   private jobService = inject(JobService)
-  protected jobs: Signal<Job[] | undefined > = computed( () => this.jobService.getFormattedJobs())
+  protected jobs: Signal<Job[]> = this.jobService.filteredJobs;
 
   selectJob(id: number): void {
     this.jobService.setSelectedJobId(id);

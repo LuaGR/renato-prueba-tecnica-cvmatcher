@@ -5,6 +5,7 @@
     [formControl]="$any( control() )"
     [type]="type()"
     [attr.placeholder]="placeholder()"
+    [style]="style()"
   >
 
   @if (control() && control()!.invalid && control()!.touched) {
