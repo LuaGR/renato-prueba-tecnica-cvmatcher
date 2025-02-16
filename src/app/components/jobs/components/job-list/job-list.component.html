@@ -8,7 +8,12 @@
     @for (job of jobs(); track job.job_id) {
     <li class="job-card" (click)="selectJob(job.job_id)">
       <div class="job-top">
-        <img [src]="job.company_image" [alt]="job.company" />
+        <img
+          [src]="job.company_image"
+          [alt]="job.company"
+          width="100"
+          height="100"
+        />
         <div class="job-info">
           <h3>{{ job.title }}</h3>
           <p>{{ job.company }}</p>

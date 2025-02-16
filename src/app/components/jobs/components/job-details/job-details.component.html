@@ -2,7 +2,12 @@
 <section class="job-details">
   <div class="top-section">
     <div class="top-left">
-      <img [src]="job.company_image" [alt]="job.company" />
+      <img
+        [src]="job.company_image"
+        [alt]="job.company"
+        width="150"
+        height="150"
+      />
     </div>
     <div class="top-right">
       <h1>{{ job.title }}</h1>

@@ -1,4 +1,4 @@
-@import "src/styles.scss";
+@use "src/styles.scss" as *;
 
 .job-details {
   display: flex;
@@ -16,8 +16,8 @@
 
     .top-left {
       img {
-        width: 100px;
-        height: 100px;
+        width: 150px;
+        height: 150px;
         object-fit: cover;
         border-radius: $border-radius;
       }
