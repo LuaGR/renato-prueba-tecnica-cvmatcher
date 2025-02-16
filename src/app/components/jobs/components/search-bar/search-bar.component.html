@@ -4,22 +4,27 @@
     <app-custom-input
       [control]="searchForm.get('title')"
       placeholder="Buscar empleo..."
-      type="text"
+      type="search"
       errorMessage="Por favor ingresa un empleo válido"
     />
     <app-custom-input
       [control]="searchForm.get('location')"
       placeholder="Lugar"
-      type="text"
+      type="search"
       errorMessage="Por favor ingresa un lugar válido"
     />
-<!-- Nuevo select para years_experience usando @for -->
-  <select formControlName="years_experience">
-    <option [ngValue]="-1">Selecciona años de experiencia</option>
-    @for (year of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; track year) {
-      <option [value]="year">{{ year }} año(s)</option>
-    }
-  </select>
+    <select formControlName="years_experience">
+      <option [ngValue]="-1">Selecciona años de experiencia</option>
+      @for (year of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; track year) {
+        <option [value]="year">{{ year }} año(s)</option>
+      }
+    </select>
+    <select formControlName="salary_min">
+      <option [ngValue]="-1">Selecciona sueldo mínimo</option>
+      @for (salary of [500, 1000, 2000, 4000, 8000]; track salary) {
+        <option [value]="salary">{{ salary }} $</option>
+      }
+    </select>
     <button type="submit" [disabled]="searchForm.invalid">Buscar</button>
 
   </form>

@@ -7,6 +7,7 @@ interface SearchForm {
   title: FormControl<string>,
   location: FormControl<string>,
   years_experience: FormControl<number>,
+  salary_min: FormControl<number>
 }
 
 @Component({
@@ -26,15 +27,18 @@ searchForm = new FormGroup<SearchForm>({
     location: new FormControl('', {
       nonNullable: true,
     }),
-    years_experience: new FormControl<number>(-1, {  // Nuevo campo
-      nonNullable: true, // Permitimos que sea opcional
+    years_experience: new FormControl(-1, {
+      nonNullable: true,
     }),
+    salary_min: new FormControl(-1, {
+      nonNullable: true,
+    })
   });
 
   onSubmit(): void {
-    const { title, location, years_experience } = this.searchForm.value;
+    const { title, location, years_experience, salary_min } = this.searchForm.value;
     this.router.navigate([], {
-      queryParams: { title, location, years_experience }, // Añadimos el nuevo parámetro
+      queryParams: { title, location, years_experience, salary_min },
       queryParamsHandling: 'merge',
     });
   }

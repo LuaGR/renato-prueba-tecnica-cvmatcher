@@ -1,4 +1,3 @@
-
 @let job = selectedJob();
 @if (job) {
   <section class="job-details">
@@ -22,8 +21,8 @@
       </ul>
     </article>
 
-    <small>Salario mínimo: {{job.salary_min}}</small>
-    <small>Experiencia: {{job.years_experience}} años</small>
+    <p>Salario mínimo: S/.{{job.salary_min}}</p>
+    <p>Experiencia: {{job.years_experience}} año(s)</p>
   </section>
 }
 
