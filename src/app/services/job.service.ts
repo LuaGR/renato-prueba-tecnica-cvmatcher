@@ -8,27 +8,37 @@ import { ActivatedRoute, Router } from '@angular/router';
   providedIn: 'root',
 })
 export class JobService {
-  private router = inject(Router)
-  private route = inject(ActivatedRoute)
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
   private state = signal({
     jobs: new Map<number, Job>(),
   });
 
-  private previousSearchValues = { title: '', location: '', years_experience: -1, salary_min: -1 };
+  private previousSearchValues = {
+    title: '',
+    location: '',
+    years_experience: -1,
+    salary_min: -1,
+  };
   filteredJobs = signal<Job[]>([]);
 
   private selectedJobId = signal<number | null>(null);
 
   constructor() {
     this.getJobs();
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       const title = params['title'] || '';
       const location = params['location'] || '';
-      const years_experience = params['years_experience'] ? Number(params['years_experience']) : -1;
-      const salary_min = params['salary_min'] ? Number(params['salary_min']) : -1;
+      const years_experience = params['years_experience']
+        ? Number(params['years_experience'])
+        : -1;
+      const salary_min = params['salary_min']
+        ? Number(params['salary_min'])
+        : -1;
       this.filterJobs(title, location, years_experience, salary_min);
     });
   }
+
   getJobs(): void {
     of(mockJobs).subscribe((result) => {
       result.forEach((job) => {
@@ -51,18 +61,27 @@ export class JobService {
     return this.state().jobs.get(id);
   }
 
-  filterJobs(title: string, location: string, years_experience: number, salary_min: number): void {
+  filterJobs(
+    title: string,
+    location: string,
+    years_experience: number,
+    salary_min: number
+  ): void {
     if (
       title === this.previousSearchValues.title &&
       location === this.previousSearchValues.location &&
       years_experience === this.previousSearchValues.years_experience &&
       salary_min === this.previousSearchValues.salary_min
     ) {
-      console.log('Los valores de búsqueda no han cambiado. No se realiza una nueva búsqueda.');
       return;
     }
 
-    this.previousSearchValues = { title, location, years_experience, salary_min };
+    this.previousSearchValues = {
+      title,
+      location,
+      years_experience,
+      salary_min,
+    };
 
     const jobs = this.getFormattedJobs();
 
@@ -70,11 +89,21 @@ export class JobService {
       this.filteredJobs.set(jobs);
     } else {
       const filtered = jobs.filter((job) => {
-        const matchesTitle = title ? job.title.toLowerCase().includes(title.toLowerCase()) : true;
-        const matchesLocation = location ? job.location.toLowerCase().includes(location.toLowerCase()) : true;
-        const matchesExperience = years_experience !== -1 ? Number( job.years_experience ) <= years_experience : true;
-        const matchesSalary = salary_min !== -1 ? Number( job.salary_min ) >= salary_min : true;
-        return matchesTitle && matchesLocation && matchesExperience && matchesSalary;
+        const matchesTitle = title
+          ? job.title.toLowerCase().includes(title.toLowerCase())
+          : true;
+        const matchesLocation = location
+          ? job.location.toLowerCase().includes(location.toLowerCase())
+          : true;
+        const matchesExperience =
+          years_experience !== -1
+            ? Number(job.years_experience) <= years_experience
+            : true;
+        const matchesSalary =
+          salary_min !== -1 ? Number(job.salary_min) >= salary_min : true;
+        return (
+          matchesTitle && matchesLocation && matchesExperience && matchesSalary
+        );
       });
 
       this.filteredJobs.set(filtered);
