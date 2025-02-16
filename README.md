@@ -1,59 +1,82 @@
-# CvmatcherRenatoLua
+# CVMATCHER - Prueba Técnica
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.2.
+## 🚀 Instrucciones para ejecutar el proyecto
 
-## Development server
+### 🔧 Requisitos previos
+Asegúrate de tener instalado lo siguiente en tu sistema:
 
-To start a local development server, run:
+- [Node.js](https://nodejs.org/) (versión recomendada: 18+)
+- [Angular CLI](https://angular.io/cli) (versión recomendada: 16+)
+- [Git](https://git-scm.com/)
 
-```bash
+### 📥 Clonar el repositorio
+```sh
+git clone https://github.com/tu-usuario/renato-prueba-tecnica-cvmatcher.git
+cd renato-prueba-tecnica-cvmatcher
+```
+
+### 📦 Instalar dependencias
+```sh
+npm install
+```
+
+### ▶️ Ejecutar la aplicación en modo desarrollo
+```sh
 ng serve
 ```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+Luego, abre tu navegador en:
+```
+http://localhost:4200/
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### 🏗 Construir la aplicación para producción
+```sh
+ng build --configuration=production
+```
+Los archivos generados estarán en la carpeta `dist/`.
 
-```bash
-ng generate --help
+---
+
+## 📌 Detalles de la implementación
+
+### 📁 Estructura del proyecto
+```
+📂 src/
+ ├── 📂 app/
+ │   ├── 📂 components/         # Componentes reutilizables
+ │   ├── 📂 mocks/              # Datos para simular la API
+ │   ├── 📂 services/           # Servicios de la aplicación
+ │   ├── 📂 models/             # Modelos de datos
+ │   ├── 📜 app.component.ts    # Componente raíz
 ```
 
-## Building
+### 🔍 Funcionalidades implementadas
+✅ **Filtrado de trabajos:**
+   - Filtrado por título, ubicación, sueldo mínimo y años de experiencia.
+   - Persistencia de filtros en la URL.
+   - Actualización de resultados al buscar.
 
-To build the project run:
+✅ **Gestión de estado con Signals:**
+   - Almacenamiento de trabajos en `signal<Map<number, Job>>()`.
+   - Filtrado eficiente sin necesidad de modificar el estado original.
 
-```bash
-ng build
-```
+✅ **Navegación dinámica:**
+   - La URL se actualiza con los parámetros de búsqueda.
+   - Permite compartir enlaces con filtros aplicados.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+✅ **Interfaz moderna con Angular 19:**
+   - Uso de `@for` para mejorar rendimiento en listas.
+   - Implementación con `Reactive Forms` para manejar los filtros.
 
-## Running unit tests
+### 🛠 Tecnologías utilizadas
+- **Angular 19** - Framework principal.
+- **TypeScript** - Tipado fuerte para mayor robustez.
+- **RxJS** - Manejo de programación reactiva.
+- **Angular Signals** - Gestión eficiente del estado.
+- **Angular Router** - Navegación y manejo de URL.
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+---
 
-```bash
-ng test
-```
+## 📜 Notas adicionales
+Si tienes algún problema o sugerencia, no dudes en abrir un issue en el repositorio. 😊
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
