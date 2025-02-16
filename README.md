@@ -11,8 +11,8 @@ Asegúrate de tener instalado lo siguiente en tu sistema:
 
 ### 📥 Clonar el repositorio
 ```sh
-git clone https://github.com/tu-usuario/cvmatcher.git
-cd cvmatcher
+git clone https://github.com/tu-usuario/renato-prueba-tecnica-cvmatcher.git
+cd renato-prueba-tecnica-cvmatcher
 ```
 
 ### 📦 Instalar dependencias
@@ -44,20 +44,17 @@ Los archivos generados estarán en la carpeta `dist/`.
 📂 src/
  ├── 📂 app/
  │   ├── 📂 components/         # Componentes reutilizables
- │   ├── 📂 pages/              # Páginas principales
+ │   ├── 📂 mocks/              # Datos para simular la API
  │   ├── 📂 services/           # Servicios de la aplicación
  │   ├── 📂 models/             # Modelos de datos
- │   ├── 📜 app.module.ts       # Módulo principal de la app
  │   ├── 📜 app.component.ts    # Componente raíz
- ├── 📂 assets/                 # Recursos estáticos
- ├── 📂 environments/           # Configuración de entornos
 ```
 
 ### 🔍 Funcionalidades implementadas
 ✅ **Filtrado de trabajos:**
-   - Filtrado por título, ubicación y años de experiencia.
+   - Filtrado por título, ubicación, sueldo mínimo y años de experiencia.
    - Persistencia de filtros en la URL.
-   - Actualización de resultados en tiempo real.
+   - Actualización de resultados al buscar.
 
 ✅ **Gestión de estado con Signals:**
    - Almacenamiento de trabajos en `signal<Map<number, Job>>()`.
