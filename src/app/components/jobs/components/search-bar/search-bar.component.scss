@@ -1,4 +1,5 @@
 @use "src/styles.scss" as *;
+@use "sass:math";
 
 .search-bar {
   display: flex;
@@ -41,7 +42,7 @@
     &:not(:last-child)::after {
       content: "";
       position: absolute;
-      right: -$spacing-unit / 2;
+      right: math.div(-$spacing-unit, 2);
       top: 50%;
       transform: translateY(-50%);
       width: 2px;
