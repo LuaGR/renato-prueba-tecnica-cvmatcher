@@ -31,7 +31,6 @@
       padding-left: calc($font-size-base * 2);
       flex: 2;
       margin-left: 30px;
-      font-size: $font-size-base;
       padding: $spacing-half;
       &:focus {
         outline: none;
@@ -54,9 +53,10 @@
   select {
     flex: 1;
     padding: $spacing-half;
-    border: 1px solid $secondary-color;
+    border: none;
     border-radius: $border-radius;
     font-size: $font-size-base;
+    color: rgb(118, 115, 115);
     &:focus {
       outline: none;
       border-color: $primary-color;

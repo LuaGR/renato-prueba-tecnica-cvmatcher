@@ -4,9 +4,19 @@
   width: 100%;
   margin-right: 2rem;
 
-  h2 {
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
+  .count-card {
+    display: flex;
+    align-items: center;
+    padding: $spacing-unit;
+    border: 2px solid $secondary-color;
+    border-radius: $border-radius;
+    margin-bottom: $spacing-unit;
+    background-color: white;
+    box-shadow: $shadow;
+
+    h2 {
+      font-size: $font-size-lg;
+    }
   }
 
   ul {
@@ -14,65 +24,76 @@
     padding: 0;
   }
 
-  .count-card {
-    display: flex;
-    align-items: center;
-    padding: 1rem;
-    border: 2px solid $secondary-color;
-    border-radius: 4px;
-    margin-bottom: 1rem;
-    background-color: white;
-  }
-
   .job-card {
-    height: 15vh;
     display: flex;
-    align-items: center;
-    padding: 1rem;
+    flex-direction: column;
+    padding: $spacing-unit;
     border: 2px solid $secondary-color;
-    border-radius: 4px;
-    margin-bottom: 1rem;
+    border-radius: $border-radius;
+    margin-bottom: $spacing-unit;
     background-color: white;
     cursor: pointer;
     transition: background-color 0.3s;
+    box-shadow: $shadow;
 
     &:hover {
       background-color: #f5f5f5;
     }
 
-    img {
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
-      border-radius: 4px;
-      margin-right: 1rem;
+    .job-top {
+      display: flex;
+      align-items: center;
+      margin-bottom: $spacing-unit;
+
+      img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: $border-radius;
+        margin-right: $spacing-unit;
+      }
+
+      .job-info {
+        flex: 1;
+
+        h3 {
+          font-size: $font-size-base;
+          margin: 0 0 $spacing-half 0;
+        }
+
+        p {
+          font-size: $font-size-sm;
+          margin: $spacing-half 0;
+        }
+
+        .location {
+          color: #aeaeae;
+        }
+      }
     }
 
-    .job-info {
-      flex: 1;
-
-      h3 {
-        font-size: 1rem;
-        margin: 0 0 0.5rem 0;
-      }
-
-      p {
-        font-size: 0.875rem;
-        margin: 0.25rem 0;
-      }
+    .job-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 
       .date {
-        font-size: 0.75rem;
-        color: #666;
+        font-size: $font-size-sm;
+        font-weight: 600;
       }
-    }
 
-    .progress {
-      padding: 0.25rem 0.5rem;
-      border-radius: 4px;
-      font-size: 0.75rem;
-      color: #eda92a;
-      border: 2px solid #eda92a;
+      .progress {
+        position: relative;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: $font-size-sm;
+        color: #eda92a;
+        border: 2px solid #eda92a;
+      }
     }
   }
 }

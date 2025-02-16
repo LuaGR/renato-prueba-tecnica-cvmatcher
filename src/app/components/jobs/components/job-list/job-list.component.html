@@ -4,20 +4,21 @@
       <strong>{{ jobs().length }}</strong> empleos encontrados
     </h2>
   </div>
-
   <ul>
     @for (job of jobs(); track job.job_id) {
     <li class="job-card" (click)="selectJob(job.job_id)">
-      <img [src]="job.company_image" [alt]="job.company" />
-
-      <div class="job-info">
-        <h3>{{ job.title }}</h3>
-        <p>{{ job.company }}</p>
-        <p>{{ job.location }}</p>
-        <p class="date">Publicado el {{ job.posted_date }}</p>
+      <div class="job-top">
+        <img [src]="job.company_image" [alt]="job.company" />
+        <div class="job-info">
+          <h3>{{ job.title }}</h3>
+          <p>{{ job.company }}</p>
+          <p class="location">{{ job.location }}</p>
+        </div>
       </div>
-
-      <span class="progress">49%</span>
+      <div class="job-bottom">
+        <p class="date">Publicado el {{ job.posted_date }}</p>
+        <span class="progress">49%</span>
+      </div>
     </li>
     }
   </ul>
