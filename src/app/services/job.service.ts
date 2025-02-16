@@ -72,7 +72,7 @@ export class JobService {
       const filtered = jobs.filter((job) => {
         const matchesTitle = title ? job.title.toLowerCase().includes(title.toLowerCase()) : true;
         const matchesLocation = location ? job.location.toLowerCase().includes(location.toLowerCase()) : true;
-        const matchesExperience = years_experience !== -1 ? job.years_experience === years_experience : true;
+        const matchesExperience = years_experience !== -1 ? Number( job.years_experience ) <= years_experience : true;
         const matchesSalary = salary_min !== -1 ? Number( job.salary_min ) >= salary_min : true;
         return matchesTitle && matchesLocation && matchesExperience && matchesSalary;
       });

@@ -1,5 +1,7 @@
+@import "src/styles.scss";
+
 .job-list {
-  width: 300px;
+  width: 100%;
   margin-right: 2rem;
 
   h2 {
@@ -12,13 +14,25 @@
     padding: 0;
   }
 
-  .job-card {
+  .count-card {
     display: flex;
     align-items: center;
     padding: 1rem;
-    border: 1px solid #ddd;
+    border: 2px solid $secondary-color;
     border-radius: 4px;
     margin-bottom: 1rem;
+    background-color: white;
+  }
+
+  .job-card {
+    height: 15vh;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border: 2px solid $secondary-color;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    background-color: white;
     cursor: pointer;
     transition: background-color 0.3s;
 
@@ -27,8 +41,8 @@
     }
 
     img {
-      width: 50px;
-      height: 50px;
+      width: 100px;
+      height: 100px;
       object-fit: cover;
       border-radius: 4px;
       margin-right: 1rem;
@@ -54,11 +68,11 @@
     }
 
     .progress {
-      background-color: #eee;
       padding: 0.25rem 0.5rem;
       border-radius: 4px;
       font-size: 0.75rem;
-      color: #666;
+      color: #eda92a;
+      border: 2px solid #eda92a;
     }
   }
 }

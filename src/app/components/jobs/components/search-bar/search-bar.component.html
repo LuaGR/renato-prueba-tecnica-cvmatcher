@@ -1,31 +1,61 @@
-<header>
-  <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="search-bar">
-
+<form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="search-bar">
+  <div class="input-with-icon">
+    <svg
+      class="icon"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <circle cx="11" cy="11" r="8"></circle>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+    </svg>
     <app-custom-input
       [control]="searchForm.get('title')"
       placeholder="Buscar empleo..."
       type="search"
       errorMessage="Por favor ingresa un empleo válido"
-    />
+    ></app-custom-input>
+  </div>
+
+  <div class="input-with-icon">
+    <svg
+      class="icon"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+      <circle cx="12" cy="10" r="3"></circle>
+    </svg>
     <app-custom-input
       [control]="searchForm.get('location')"
       placeholder="Lugar"
       type="search"
       errorMessage="Por favor ingresa un lugar válido"
-    />
-    <select formControlName="years_experience">
-      <option [ngValue]="-1">Selecciona años de experiencia</option>
-      @for (year of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; track year) {
-        <option [value]="year">{{ year }} año(s)</option>
-      }
-    </select>
-    <select formControlName="salary_min">
-      <option [ngValue]="-1">Selecciona sueldo mínimo</option>
-      @for (salary of [500, 1000, 2000, 4000, 8000]; track salary) {
-        <option [value]="salary">{{ salary }} $</option>
-      }
-    </select>
-    <button type="submit" [disabled]="searchForm.invalid">Buscar</button>
+    ></app-custom-input>
+  </div>
 
-  </form>
-</header>
+  <select formControlName="years_experience">
+    <option [ngValue]="-1">Selecciona años de experiencia</option>
+    @for (year of [1, 2, 3, 5, 8]; track year) {
+    <option [value]="year">{{ year }} año(s)</option>
+    }
+  </select>
+
+  <select formControlName="salary_min">
+    <option [ngValue]="-1">Selecciona sueldo mínimo</option>
+    @for (salary of [500, 1000, 2000, 4000, 8000]; track salary) {
+    <option [value]="salary">S/.{{ salary }}</option>
+    }
+  </select>
+
+  <button type="submit" [disabled]="searchForm.invalid">Buscar</button>
+</form>
