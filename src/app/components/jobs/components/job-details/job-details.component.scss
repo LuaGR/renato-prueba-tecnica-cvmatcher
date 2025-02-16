@@ -3,8 +3,8 @@
 .job-details {
   display: flex;
   flex-direction: column;
-  gap: $spacing-unit * 2;
-  padding: $spacing-unit * 2;
+  gap: 2rem;
+  padding: 2rem;
   background-color: #fff;
   border-radius: $border-radius;
   border: 2px solid $secondary-color;
@@ -12,7 +12,7 @@
   .top-section {
     display: flex;
     align-items: center;
-    gap: $spacing-unit * 2;
+    gap: 2rem;
 
     .top-left {
       img {
