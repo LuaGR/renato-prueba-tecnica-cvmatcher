@@ -1,32 +1,73 @@
-@let job = selectedJob();
-@if (job) {
-  <section class="job-details">
-    <header>
-      <img [src]="job.company_image" [alt]="job.company">
+@let job = selectedJob(); @if (job) {
+<section class="job-details">
+  <div class="top-section">
+    <div class="top-left">
+      <img [src]="job.company_image" [alt]="job.company" />
+    </div>
+    <div class="top-right">
       <h1>{{ job.title }}</h1>
       <p class="company">{{ job.company }}</p>
-      <p class="location">📍 {{ job.location }}</p>
-      <a [href]="job.url" target="_blank" class="apply">Ir a la oferta</a>
-    </header>
-
+      <div class="icon-container">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke="currentColor"
+          class="icon"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
+          />
+        </svg>
+        <p class="employment-type">Fulltime - Remoto</p>
+      </div>
+      <div class="icon-container">
+        <svg
+          class="icon"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+          <circle cx="12" cy="10" r="3"></circle>
+        </svg>
+        <p class="location">{{ job.location }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="middle-section">
+    <p class="date">Publicado el {{ job.posted_date }}</p>
+    <a [href]="job.url" target="_blank" class="apply">Ir a la oferta</a>
+  </div>
+  <hr />
+  <div class="bottom-section">
+    <div class="announcement">
+      <div class="announcement-box">
+        <h3>ANUNCIO</h3>
+      </div>
+    </div>
     <article class="job-description">
       <h3>Información del empleo</h3>
       <p>{{ job.description }}</p>
-
       <h3>Requisitos:</h3>
       <ul>
         @for (skill of job.technical_skills.split(','); track $index) {
-          <li>{{ skill }}</li>
+        <li>{{ skill }}</li>
         }
       </ul>
+      <p>Experiencia: {{ job.years_experience }} año(s)</p>
+      <p>Salario mínimo: S/.{{ job.salary_min }}</p>
     </article>
+  </div>
+</section>
 
-    <p>Salario mínimo: S/.{{job.salary_min}}</p>
-    <p>Experiencia: {{job.years_experience}} año(s)</p>
-  </section>
+} @else {
+<p>Selecciona un empleo para ver los detalles.</p>
 }
-
-<ng-template #noJob>
-  <p>Selecciona un empleo para ver los detalles.</p>
-</ng-template>
-
