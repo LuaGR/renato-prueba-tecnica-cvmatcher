@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './components';
-import { JobDetailsComponent } from './components/jobs/components';
 
 export const routes: Routes = [
   {
@@ -12,5 +11,4 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./components/jobs/jobs.component').then((m) => m.JobsComponent),
   },
-  { path: 'job/:id', component: JobDetailsComponent },
 ];
