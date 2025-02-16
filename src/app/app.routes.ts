@@ -12,9 +12,5 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./components/jobs/jobs.component').then((m) => m.JobsComponent),
   },
-  {
-    path: 'job/:id',
-    component: JobDetailsComponent,
-    data: { renderMode: 'client' },
-  },
+  { path: 'job/:id', component: JobDetailsComponent },
 ];
