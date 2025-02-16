@@ -43,11 +43,17 @@ Los archivos generados estarán en la carpeta `dist/`.
 ```
 📂 src/
  ├── 📂 app/
- │   ├── 📂 components/         # Componentes reutilizables
- │   ├── 📂 mocks/              # Datos para simular la API
- │   ├── 📂 services/           # Servicios de la aplicación
- │   ├── 📂 models/             # Modelos de datos
- │   ├── 📜 app.component.ts    # Componente raíz
+ │   ├── 📂 components/            # Componentes reutilizables
+         ├── 📂 home/              # Página con mi nombre
+         ├── 📂 jobs/              # Página de los trabajos
+             ├── 📂 custom-input/  # Component input reutilizable
+             ├── 📂 job-details/   # Componente de detalles del empleo
+             ├── 📂 job-list/      # Componente de la lista de empleos
+             ├── 📂 search-bar/    # Componente de la barra de filtros
+ │   ├── 📂 mocks/                 # Datos para simular la API
+ │   ├── 📂 services/              # Servicios de la aplicación
+ │   ├── 📂 models/                # Modelos de datos
+ │   ├── 📜 app.component.ts       # Componente raíz
 ```
 
 ### 🔍 Funcionalidades implementadas
